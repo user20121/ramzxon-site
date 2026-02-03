@@ -6,8 +6,8 @@
 
 <style>
 :root{
-  --neon:#00fff0;
-  --pink:#ff2fd6;
+  --n1:#00fff0;
+  --n2:#ff2fd6;
 }
 
 body{
@@ -20,41 +20,47 @@ body{
 
 h1{
   margin:25px 0;
-  color:var(--neon);
+  color:var(--n1);
   animation:glow 2.5s infinite alternate;
 }
 @keyframes glow{
-  from{ text-shadow:0 0 6px rgba(0,255,204,.4); }
-  to{ text-shadow:0 0 18px rgba(0,255,204,.9),0 0 28px rgba(255,47,214,.6); }
+  from{ text-shadow:0 0 6px var(--n1); }
+  to{ text-shadow:0 0 18px var(--n1),0 0 28px var(--n2); }
 }
 
-/* ===== NEON FRAME ===== */
-.neon-wrap{
+/* ===== VIDEO FRAME ===== */
+.frame{
   width:90%;
   max-width:600px;
-  margin:30px auto;
-  padding:3px;
-  border-radius:18px;
-  background:linear-gradient(90deg,var(--neon),var(--pink),var(--neon));
-  animation:spin 3s linear infinite;
+  margin:28px auto;
+  padding:3px;                 /* neon qalinligi */
+  border-radius:16px;
+  background:linear-gradient(
+    90deg,
+    var(--n1),
+    var(--n2),
+    var(--n1)
+  );
+  animation:neonMove 3s linear infinite;
 }
 
-@keyframes spin{
+/* neon harakati */
+@keyframes neonMove{
   to{ filter:hue-rotate(360deg); }
 }
 
-/* ===== VIDEO INSIDE ===== */
-.neon-inner{
+/* ichki qism — video joyi */
+.inner{
   background:#000;
-  border-radius:15px;
-  padding:6px;
+  border-radius:13px;
+  padding:4px;
 }
 
 iframe{
   width:100%;
   height:230px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
 }
 </style>
 </head>
@@ -63,41 +69,29 @@ iframe{
 
 <h1>RAMZXON • PHONK</h1>
 
-<div class="neon-wrap">
-  <div class="neon-inner">
-    <iframe src="https://www.youtube.com/embed/JX_uCMdpnAE"></iframe>
-  </div>
-</div>
+<div class="frame"><div class="inner">
+<iframe src="https://www.youtube.com/embed/JX_uCMdpnAE"></iframe>
+</div></div>
 
-<div class="neon-wrap">
-  <div class="neon-inner">
-    <iframe src="https://www.youtube.com/embed/qEs52rtvOuA"></iframe>
-  </div>
-</div>
+<div class="frame"><div class="inner">
+<iframe src="https://www.youtube.com/embed/qEs52rtvOuA"></iframe>
+</div></div>
 
-<div class="neon-wrap">
-  <div class="neon-inner">
-    <iframe src="https://www.youtube.com/embed/9jTpJsFB-d4"></iframe>
-  </div>
-</div>
+<div class="frame"><div class="inner">
+<iframe src="https://www.youtube.com/embed/9jTpJsFB-d4"></iframe>
+</div></div>
 
-<div class="neon-wrap">
-  <div class="neon-inner">
-    <iframe src="https://www.youtube.com/embed/uJrHoagOjnU"></iframe>
-  </div>
-</div>
+<div class="frame"><div class="inner">
+<iframe src="https://www.youtube.com/embed/uJrHoagOjnU"></iframe>
+</div></div>
 
-<div class="neon-wrap">
-  <div class="neon-inner">
-    <iframe src="https://www.youtube.com/embed/7ULXYXFsgtM"></iframe>
-  </div>
-</div>
+<div class="frame"><div class="inner">
+<iframe src="https://www.youtube.com/embed/7ULXYXFsgtM"></iframe>
+</div></div>
 
-<div class="neon-wrap">
-  <div class="neon-inner">
-    <iframe src="https://www.youtube.com/embed/tn10M_792_Q"></iframe>
-  </div>
-</div>
+<div class="frame"><div class="inner">
+<iframe src="https://www.youtube.com/embed/tn10M_792_Q"></iframe>
+</div></div>
 
 </body>
 </html>
