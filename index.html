@@ -1,62 +1,51 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <title>Ramzxon Music</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Ramzxon Phonk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <style>
-    body {
-      margin: 0;
-      background: linear-gradient(180deg, #0b0b0b, #121212);
-      color: #fff;
+    :root{
+      --neon: #00ffcc;
+      --pink: #ff2fd6;
+      --bg1: #06060a;
+      --bg2: #0b0b12;
+      --card: #0f1020;
+    }
+
+    * { box-sizing: border-box; }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #1a1b3a 0%, transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, #3a0f3a 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      color:#fff;
       font-family: system-ui, -apple-system, Arial;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .music-card {
-      max-width: 360px;
-      margin: auto;
-      background: #161616;
-      border-radius: 20px;
       padding: 18px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
 
-    .cover {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, #00ff88, #0066ff);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      margin-bottom: 16px;
+    h1{
+      text-align:center;
+      letter-spacing:2px;
+      margin: 10px 0 24px;
+      text-shadow: 0 0 12px rgba(0,255,204,.6);
     }
 
-    .title {
-      font-size: 18px;
-      font-weight: 600;
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap:16px;
+      max-width:1100px;
+      margin:0 auto;
     }
 
-    .artist {
-      font-size: 14px;
-      color: #aaa;
-      margin-bottom: 16px;
-    }
-
-    .controls {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .play {
-      flex: 1;
-      background: #00ff8
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)), var(--card);
+      border-radius:18px;
+      padding:14px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.06) inset,
