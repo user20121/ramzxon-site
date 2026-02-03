@@ -78,11 +78,8 @@ iframe{
 
   <div id="songs"></div>
 
-<iframe
-  id="player"
-  height="200"
-  allow="autoplay; encrypted-media"
-></iframe>
+<div id="player"></div>
+
 
 </div>
 
@@ -116,12 +113,55 @@ function addSong(){
   yt.value="";
 }
 
-function play(i){
-  player.src =
-    "https://www.youtube.com/embed/" +
-    songs[i].id +
-    "?autoplay=1&mute=0";
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+let player;
+let songs = JSON.parse(localStorage.getItem("songs")) || [];
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '200',
+    width: '100%',
+    playerVars: {
+      autoplay: 0,
+      controls: 1
+    }
+  });
+  render();
 }
+
+function play(i){
+  player.loadVideoById(songs[i].id);
+}
+
+function save(){
+  localStorage.setItem("songs", JSON.stringify(songs));
+}
+
+function render(){
+  let box = document.getElementById("songs");
+  box.innerHTML = "";
+  songs.forEach((s,i)=>{
+    box.innerHTML += `
+      <div class="card" onclick="play(${i})">
+        ▶ ${s.title}
+      </div>
+    `;
+  });
+}
+
+function addSong(){
+  let t = title.value.trim();
+  let y = yt.value.trim();
+  if(!t || !y) return alert("To‘ldir");
+  songs.push({title:t, id:y});
+  save();
+  render();
+  title.value="";
+  yt.value="";
+}
+</script>
+
 
 
 render();
