@@ -144,6 +144,21 @@ function addSong(title, url){
   saveSongs();
   renderSongs();
 }
+    function renderSongs(){
+  const box = document.getElementById("songs");
+  box.innerHTML = "";
+
+  songs.forEach((s, i)=>{
+    box.innerHTML += `
+      <div class="card" onclick="playSong(${i})">
+        🎵 ${s.title}
+      </div>
+    `;
+  });
+}
+
+window.onload = renderSongs;
+
 
   </script>
 </body>
