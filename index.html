@@ -2,216 +2,67 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<title>Ramzxon Neon Phonk</title>
+<title>Ramzxon Phonk</title>
 
 <style>
-:root{
-  --neon:#00fff7;
-  --pink:#ff2fd6;
-}
-
 body{
   margin:0;
-  min-height:100vh;
   background:#000;
-  font-family:Arial, sans-serif;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  color:#0ff;
+  font-family:Arial;
+  text-align:center;
 }
 
-/* NEON TITLE */
 h1{
-  margin:25px 0;
-  font-size:32px;
-  animation:glow 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes glow{
-  from{ text-shadow:0 0 6px rgba(0,255,247,.4); }
-  to{
-    text-shadow:
-      0 0 12px rgba(0,255,247,.8),
-      0 0 24px rgba(255,47,214,.7);
-  }
-}
-
-/* BUTTONS */
-.buttons{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:12px;
-  width:90%;
-  max-width:700px;
+  margin:20px 0;
+  text-shadow:0 0 15px #0ff;
 }
 
 button{
-  padding:12px;
-  background:#050505;
-  color:var(--neon);
-  border:1px solid var(--neon);
+  display:block;
+  width:80%;
+  margin:10px auto;
+  padding:15px;
+  background:#111;
+  color:#0ff;
+  border:2px solid #0ff;
+  border-radius:10px;
+  font-size:16px;
   cursor:pointer;
-  position:relative;
-  overflow:hidden;
-  font-size:15px;
-}
-
-button::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(120deg,transparent,rgba(0,255,247,.6),transparent);
-  transform:translateX(-100%);
-  animation:sweep 3s linear infinite;
-}
-
-@keyframes sweep{
-  to{ transform:translateX(100%); }
 }
 
 button:hover{
-  box-shadow:0 0 12px var(--neon), 0 0 24px var(--pink);
-}
-
-/* PLAYER */
-.player{
-  margin-top:25px;
-  width:90%;
-  max-width:560px;
+  box-shadow:0 0 20px #0ff;
 }
 
 iframe{
-  width:100%;
-  height:315px;
+  width:90%;
+  height:220px;
+  margin:20px auto;
+  display:block;
   border:none;
-  display:none;
-  box-shadow:0 0 18px var(--neon);
+  box-shadow:0 0 25px #0ff;
 }
-
-/* FOOTER */
-footer{
-  margin:25px 0;
-  font-size:13px;
-  opacity:.6;
-}
-  iframe{
-  width:100%;
-  height:320px;
-  border:none;
-  border-radius:16px;
-  display:none;
-  box-shadow:0 0 25px rgba(0,255,204,.6);
-}
-
 </style>
 </head>
 
 <body>
 
-<h1>⚡ Ramzxon Neon Phonk</h1>
+<h1>RAMZXON PHONK</h1>
 
-<div class="buttons">
-  <button onclick="play(1)">Gozalo</button>
-  <button onclick="play(2)">Tiki TIKI</button>
-  <button onclick="play(3)">Acido 3</button>
-  <button onclick="play(4)">Slxughter Envy</button>
-  <button onclick="play(5)">Montagem Biónica</button>
-  <button onclick="play(6)">ACIDO ALT VER</button>
-</div>
-  <button onclick="openAdmin()" class="admin-btn">🔒 Admin</button>
+<iframe id="player" src="" allow="autoplay"></iframe>
 
-<div id="adminPanel" style="display:none;">
-  <input type="text" id="songName" placeholder="Qo‘shiq nomi">
-  <input type="text" id="songLink" placeholder="YouTube embed link">
-  <button onclick="addSong()">➕ Qo‘shiq qo‘shish</button>
-</div>
-  <h2>🎧 Phonklar</h2>
-
-<div id="songs"></div>
-<div class="player">
-<iframe id="player" allow="autoplay" allowfullscreen></iframe>
-</div>
-
-<footer>© Phonks</footer>
+<button onclick="play('https://www.youtube.com/embed/JX_uCMdpnAE')">Gozalo</button>
+<button onclick="play('https://www.youtube.com/embed/qEs52rtvOuA')">TIKI TIKI</button>
+<button onclick="play('https://www.youtube.com/embed/9jTpJsFB-d4')">Acido 3</button>
+<button onclick="play('https://www.youtube.com/embed/uJrHoagOjnU')">slxughter-envy</button>
+<button onclick="play('https://www.youtube.com/embed/7ULXYXFsgtM')">Montagem Bionica</button>
+<button onclick="play('https://www.youtube.com/embed/tn10M_792_Q')">ACIDO ALT VER</button>
 
 <script>
-const links = {
-  1:"https://www.youtube.com/embed/JX_uCMdpnAE?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0",
-  2:"https://www.youtube.com/embed/qEs52rtvOuA?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0",
-  3:"https://www.youtube.com/embed/9jTpJsFB-d4?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0",
-  4:"https://www.youtube.com/embed/uJrHoagOjnU?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0",
-  5:"https://www.youtube.com/embed/7ULXYXFsgtM?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0",
-  6:"https://www.youtube.com/embed/tn10M_792_Q?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0"
-};
-
-let current = null;
-
-function playSong(n){
-  if(current){
-    current.src = "";
-    current.style.display = "none";
-  }
-  const f = document.getElementById("player");
-  f.src = links[n];
-  f.style.display = "block";
-  current = f;
-}
-</script>
-
-<script>
-function play(n){
-  for(let i=1;i<=6;i++){
-    const f=document.getElementById("p"+i);
-    f.style.display="none";
-    f.src="";
-  }
-  const cur=document.getElementById("p"+n);
-  cur.style.display="block";
-  cur.src=links[n];
-}
-</script>
-<script>
-const ADMIN_PASSWORD = "ramzxon"; // 🔴 parolni xohlagancha o‘zgartir
-
-let songs = JSON.parse(localStorage.getItem("songs")) || [];
-
-function openAdmin(){
-  let p = prompt("Admin parol:");
-  if(p === ADMIN_PASSWORD){
-    document.getElementById("adminPanel").style.display = "block";
-  } else {
-    alert("❌ Ruxsat yo‘q");
-  }
-}
-
-function addSong(){
-  let name = document.getElementById("songName").value;
-  let link = document.getElementById("songLink").value;
-
-  if(!name || !link){
-    alert("To‘ldir");
-    return;
-  }
-
-  songs.push({name, link});
-  localStorage.setItem("songs", JSON.stringify(songs));
-  alert("✅ Qo‘shiq qo‘shildi");
-  location.reload();
-}
-</script>
-<script>
-const container = document.getElementById("songs");
-
-songs.forEach((s, i)=>{
-  let btn = document.createElement("button");
-  btn.innerText = s.name;
-  btn.onclick = ()=>playSong(s.link);
-  container.appendChild(btn);
-});
-
-function playSong(link){
-  document.getElementById("player").src = link + "?autoplay=1";
+function play(link){
+  const player = document.getElementById("player");
+  player.src = link + "?autoplay=1";
 }
 </script>
 
