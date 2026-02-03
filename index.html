@@ -2,122 +2,114 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<title>Ramzxon Music</title>
+<title>Ramzxon Phonk</title>
 
 <style>
 body{
   margin:0;
   background:#000;
+  color:#fff;
   font-family:Arial, sans-serif;
-  color:#00ffff;
-  display:flex;
-  justify-content:center;
-}
-
-.container{
-  width:360px;
-  padding:20px;
+  text-align:center;
 }
 
 h1{
-  text-align:center;
-  margin-bottom:20px;
-  text-shadow:0 0 15px #00ffff;
-  animation: glow 2.5s infinite alternate;
+  margin:20px 0;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 @keyframes glow{
-  from{ text-shadow:0 0 10px #00ffff; }
-  to{ text-shadow:0 0 25px #00ffff, 0 0 40px #ff2fd6; }
+  from{ text-shadow:0 0 8px #00ffcc }
+  to{ text-shadow:0 0 25px #ff00ff }
+}
+
+.container{
+  max-width:500px;
+  margin:auto;
 }
 
 .card{
   background:#111;
+  margin:15px;
   padding:15px;
   border-radius:12px;
-  margin:10px 0;
+  box-shadow:0 0 15px #00ffcc;
+}
+
+button{
+  padding:10px 25px;
+  font-size:16px;
+  border:none;
+  border-radius:20px;
   cursor:pointer;
-  box-shadow:0 0 10px #00ffff44;
-  position:relative;
-  overflow:hidden;
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-60%;
-  width:60%;
-  height:100%;
-  background:linear-gradient(120deg, transparent, #00ffff55, transparent);
-  animation:sweep 3s linear infinite;
-}
-
-@keyframes sweep{
-  from{ left:-60%; }
-  to{ left:120%; }
-}
-
-.card:hover{
-  box-shadow:0 0 25px #00ffff;
+  background:#00ffcc;
 }
 
 iframe{
+  display:none;
   width:100%;
   height:200px;
-  border:none;
-  display:none;
   margin-top:10px;
+  border-radius:10px;
 }
 </style>
 </head>
 
 <body>
+
+<h1>🔥 RAMZXON PHONK 🔥</h1>
+
 <div class="container">
-  <h1>🎧 Ramzxon Music</h1>
 
-  <!-- BOR QO‘SHIQLAR -->
-  <div class="card" onclick="play('p1')">▶ Phonk 1</div>
-  <iframe id="p1"
-    src="https://www.youtube.com/embed/XFdnTeTJp3E"
-    allow="autoplay; encrypted-media">
-  </iframe>
+  <div class="card">
+    <h3>Phonk 1</h3>
+    <button onclick="play('p1')">▶ Play</button>
+  </div>
 
-  <div class="card" onclick="play('p2')">▶ Phonk 2</div>
-  <iframe id="p2"
-    src="https://www.youtube.com/embed/9jTpJsFB-d4"
-    allow="autoplay; encrypted-media">
-  </iframe>
+  <div class="card">
+    <h3>Phonk 2</h3>
+    <button onclick="play('p2')">▶ Play</button>
+  </div>
 
-  <!-- 👇 YANGI QO‘SHIQ SHU YERGA -->
-  <div class="card" onclick="play('p3')">▶ Phonk 3</div>
-  <iframe id="p3"
-    src="https://www.youtube.com/embed/RDGMEMYH9CUrFO7CfLJpaD7UR85w"
-    allow="autoplay; encrypted-media">
-  </iframe>
-<div class="card" onclick="play('p4')">▶ Phonk 3</div>
-<iframe id="p3"
-  src="https://www.youtube.com/embed/HwRqZm5cuis"
-  allow="autoplay; encrypted-media">
-</iframe>
+  <div class="card">
+    <h3>Phonk 3</h3>
+    <button onclick="play('p3')">▶ Play</button>
+  </div>
+
+  <div class="card">
+    <h3>Phonk 4</h3>
+    <button onclick="play('p4')">▶ Play</button>
+  </div>
+
+  <div class="card">
+    <h3>Phonk 5</h3>
+    <button onclick="play('p5')">▶ Play</button>
+  </div>
+
+  <div class="card">
+    <h3>Phonk 6</h3>
+    <button onclick="play('p6')">▶ Play</button>
+  </div>
+
+  <!-- VIDEOLAR -->
+  <iframe id="p1" src="https://www.youtube.com/embed/HwRqZm5cuis?autoplay=1"></iframe>
+  <iframe id="p2" src="https://www.youtube.com/embed/9jTpJsFB-d4?autoplay=1"></iframe>
+  <iframe id="p3" src="https://www.youtube.com/embed/XFdnTeTJp3E?autoplay=1"></iframe>
+  <iframe id="p4" src="https://www.youtube.com/embed/Orvk4ElMZvU?list"></iframe>
+  <iframe id="p5" src="https://www.youtube.com/embed/VIDEO_ID_5?autoplay=1"></iframe>
+  <iframe id="p6" src="https://www.youtube.com/embed/VIDEO_ID_6?autoplay=1"></iframe>
+
 </div>
-
 
 <script>
 function play(id){
-  document.querySelectorAll("iframe").forEach(f=>{
-    if(f.id !== id){
-      f.style.display = "none";
-      f.src = f.src; // STOP
+  document.querySelectorAll('iframe').forEach(v=>{
+    if(v.id !== id){
+      v.style.display = "none";
+      v.src = v.src; // stop
     }
   });
-
-  const cur = document.getElementById(id);
-  cur.style.display = "block";
-
-  if(!cur.src.includes("autoplay")){
-    cur.src += "?autoplay=1";
-  }
+  document.getElementById(id).style.display = "block";
 }
 </script>
 
