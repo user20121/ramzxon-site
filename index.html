@@ -117,8 +117,12 @@ function addSong(){
 }
 
 function play(i){
-  player.src = "https://www.youtube.com/embed/"+songs[i].id+"?autoplay=1";
+  player.src =
+    "https://www.youtube.com/embed/" +
+    songs[i].id +
+    "?autoplay=1&mute=0";
 }
+
 
 render();
 </script>
