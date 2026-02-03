@@ -7,8 +7,8 @@
 <style>
 body{
   margin:0;
-  background:black;
-  font-family:Arial;
+  background:#000;
+  font-family:Arial, sans-serif;
   color:#00ffff;
   display:flex;
   justify-content:center;
@@ -21,7 +21,14 @@ body{
 
 h1{
   text-align:center;
-  text-shadow:0 0 20px #00ffff;
+  margin-bottom:20px;
+  text-shadow:0 0 15px #00ffff;
+  animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow{
+  from{ text-shadow:0 0 10px #00ffff; }
+  to{ text-shadow:0 0 25px #00ffff, 0 0 40px #ff2fd6; }
 }
 
 .card{
@@ -31,36 +38,36 @@ h1{
   margin:10px 0;
   cursor:pointer;
   box-shadow:0 0 10px #00ffff44;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-60%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(120deg, transparent, #00ffff55, transparent);
+  animation:sweep 3s linear infinite;
+}
+
+@keyframes sweep{
+  from{ left:-60%; }
+  to{ left:120%; }
 }
 
 .card:hover{
   box-shadow:0 0 25px #00ffff;
 }
 
-button{
-  width:100%;
-  padding:10px;
-  margin-top:8px;
-  border:none;
-  border-radius:8px;
-  background:#00ffff;
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-input{
-  width:100%;
-  padding:8px;
-  margin-top:6px;
-  border-radius:6px;
-  border:none;
-}
-
 iframe{
   width:100%;
-  height:0;
+  height:200px;
   border:none;
+  display:none;
+  margin-top:10px;
 }
 </style>
 </head>
@@ -69,101 +76,37 @@ iframe{
 <div class="container">
   <h1>🎧 Ramzxon Music</h1>
 
-  <!-- ADMIN PANEL -->
-  <div id="admin">
-    <input id="title" placeholder="Qo‘shiq nomi">
-    <input id="yt" placeholder="YouTube video ID">
-    <button onclick="addSong()">➕ Qo‘shish</button>
-  </div>
+  <!-- CARDLAR -->
+  <div class="card" onclick="play('p1')">▶ Phonk 1</div>
+  <iframe id="p1"
+    src="https://www.youtube.com/embed/XFdnTeTJp3E"
+    allow="autoplay; encrypted-media">
+  </iframe>
 
-  <div id="songs"></div>
-
-<div id="player"></div>
-
+  <div class="card" onclick="play('p2')">▶ Phonk 2</div>
+  <iframe id="p2"
+    src="https://www.youtube.com/embed/9jTpJsFB-d4"
+    allow="autoplay; encrypted-media">
+  </iframe>
 
 </div>
 
 <script>
-let songs = JSON.parse(localStorage.getItem("songs")) || [];
-
-function save(){
-  localStorage.setItem("songs", JSON.stringify(songs));
-}
-
-function render(){
-  let box = document.getElementById("songs");
-  box.innerHTML = "";
-  songs.forEach((s,i)=>{
-    box.innerHTML += `
-      <div class="card" onclick="play(${i})">
-        ▶ ${s.title}
-      </div>
-    `;
-  });
-}
-
-function addSong(){
-  let t = title.value.trim();
-  let y = yt.value.trim();
-  if(!t || !y) return alert("To‘ldir");
-  songs.push({title:t, id:y});
-  save();
-  render();
-  title.value="";
-  yt.value="";
-}
-
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-let player;
-let songs = JSON.parse(localStorage.getItem("songs")) || [];
-
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '200',
-    width: '100%',
-    playerVars: {
-      autoplay: 0,
-      controls: 1
+function play(id){
+  document.querySelectorAll("iframe").forEach(f=>{
+    if(f.id !== id){
+      f.style.display = "none";
+      f.src = f.src; // STOP
     }
   });
-  render();
+
+  const cur = document.getElementById(id);
+  cur.style.display = "block";
+
+  if(!cur.src.includes("autoplay")){
+    cur.src += "?autoplay=1";
+  }
 }
-
-function play(i){
-  player.loadVideoById(songs[i].id);
-}
-
-function save(){
-  localStorage.setItem("songs", JSON.stringify(songs));
-}
-
-function render(){
-  let box = document.getElementById("songs");
-  box.innerHTML = "";
-  songs.forEach((s,i)=>{
-    box.innerHTML += `
-      <div class="card" onclick="play(${i})">
-        ▶ ${s.title}
-      </div>
-    `;
-  });
-}
-
-function addSong(){
-  let t = title.value.trim();
-  let y = yt.value.trim();
-  if(!t || !y) return alert("To‘ldir");
-  songs.push({title:t, id:y});
-  save();
-  render();
-  title.value="";
-  yt.value="";
-}
-
-
-
-render();
 </script>
 
 </body>
