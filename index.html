@@ -133,20 +133,18 @@
   <footer>© 2026 Ramzxon</footer>
 
   <script>
-    // faqat bittasi chalinsin
-    function play(id){
-      document.querySelectorAll('iframe').forEach(f=>{
-        if(f.id!==id){ f.style.display='none'; f.src=f.src; }
-      });
-      document.getElementById(id).style.display='block';
-    }
-    // cover preview
-    function setCover(input, imgId){
-      const file=input.files[0];
-      if(!file) return;
-      const url=URL.createObjectURL(file);
-      document.getElementById(imgId).src=url;
-    }
+let songs = JSON.parse(localStorage.getItem("songs")) || [];
+
+function saveSongs(){
+  localStorage.setItem("songs", JSON.stringify(songs));
+}
+
+function addSong(title, url){
+  songs.push({title, url});
+  saveSongs();
+  renderSongs();
+}
+
   </script>
 </body>
 </html>
