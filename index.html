@@ -49,3 +49,130 @@
       padding:14px;
       box-shadow:
         0 0 0 1px rgba(255,255,255,.06) inset,
+        0 18px 40px rgba(0,0,0,.6);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::after{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius:18px;
+      background: linear-gradient(120deg, transparent 30%, rgba(0,255,204,.25), transparent 70%);
+      opacity:.6;
+      pointer-events:none;
+    }
+
+    .cover{
+      height:160px;
+      border-radius:14px;
+      background:
+        linear-gradient(135deg, rgba(0,255,204,.35), rgba(255,47,214,.35)),
+        radial-gradient(120px 120px at 20% 30%, rgba(255,255,255,.35), transparent 60%),
+        #121236;
+      display:flex; align-items:center; justify-content:center;
+      font-size:44px;
+      box-shadow: inset 0 0 40px rgba(0,0,0,.5);
+      margin-bottom:12px;
+    }
+
+    .title{ font-weight:700; letter-spacing:.4px; }
+    .artist{ color:#b7b7ff; font-size:13px; margin-bottom:12px; }
+
+    .controls{ display:flex; gap:10px; }
+
+    .play{
+      flex:1;
+      border:none;
+      border-radius:12px;
+      padding:12px 14px;
+      font-weight:800;
+      cursor:pointer;
+      color:#001b16;
+      background:
+        linear-gradient(180deg, #6bffe7, var(--neon));
+      box-shadow: 0 0 18px rgba(0,255,204,.55);
+    }
+
+    .play:hover{ filter:brightness(1.05); }
+
+    iframe{
+      width:100%;
+      height:200px;
+      margin-top:12px;
+      border-radius:14px;
+      display:none;
+      border:none;
+      box-shadow: 0 0 22px rgba(255,47,214,.35);
+    }
+
+    footer{
+      text-align:center;
+      margin:34px 0 10px;
+      color:#7b7bff;
+      font-size:13px;
+      opacity:.8;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>⚡ RAMZXON • PHONK ⚡</h1>
+
+  <div class="grid">
+
+    <!-- CARD 1 -->
+    <div class="card">
+      <div class="cover">🎵</div>
+      <div class="title">Phonk #1</div>
+      <div class="artist">YouTube</div>
+      <div class="controls">
+        <button class="play" onclick="play('p1')">▶ Play</button>
+      </div>
+      <iframe id="p1" src="https://www.youtube.com/embed/XFdnTeTJp3E"
+        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+      <div class="cover">🔥</div>
+      <div class="title">Phonk #2</div>
+      <div class="artist">YouTube</div>
+      <div class="controls">
+        <button class="play" onclick="play('p2')">▶ Play</button>
+      </div>
+      <iframe id="p2" src="https://www.youtube.com/embed/9jTpJsFB-d4"
+        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+      <div class="cover">⚡</div>
+      <div class="title">Phonk #3</div>
+      <div class="artist">YouTube</div>
+      <div class="controls">
+        <button class="play" onclick="play('p3')">▶ Play</button>
+      </div>
+      <iframe id="p3" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+  </div>
+
+  <footer>© 2026 Ramzxon</footer>
+
+  <script>
+    // Bittasini bosganda boshqalari yopilsin
+    function play(id){
+      document.querySelectorAll('iframe').forEach(f=>{
+        if(f.id !== id){
+          f.style.display='none';
+          f.src = f.src; // stop playback
+        }
+      });
+      const el = document.getElementById(id);
+      el.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
