@@ -96,14 +96,21 @@ iframe{
 <script>
 function play(id){
   document.querySelectorAll("iframe").forEach(v=>{
-    v.style.display="none";
-    v.src=v.src;
+    if(v.id !== id){
+      v.src = v.src;      // STOP
+      v.style.display="none";
+    }
   });
-  const f=document.getElementById(id);
+
+  const f = document.getElementById(id);
   f.style.display="block";
-  f.src=f.src+"?autoplay=1";
+
+  if(!f.src.includes("autoplay")){
+    f.src = f.src + "?autoplay=1";
+  }
 }
 </script>
+
 
 </body>
 </html>
