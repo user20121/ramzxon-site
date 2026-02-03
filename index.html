@@ -2,135 +2,152 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<title>Ramzxon Neon Phonk</title>
+<title>Ramzxon Phonk</title>
 
 <style>
 :root{
   --neon:#00fff0;
   --pink:#ff2fd6;
-  --purple:#7a00ff;
+  --bg:#050010;
 }
 
 body{
   margin:0;
   min-height:100vh;
-  background:radial-gradient(circle at top,#050010,#000);
-  animation:bgmove 10s infinite alternate;
+  background:radial-gradient(circle at top,var(--bg),#000);
   color:white;
   font-family:Arial, sans-serif;
   text-align:center;
 }
 
-@keyframes bgmove{
-  from{ background-position:0% 0%; }
-  to{ background-position:100% 100%; }
-}
-
-/* ===== TITLE ===== */
 h1{
-  margin:30px 0;
-  font-size:40px;
+  margin:25px 0;
   color:var(--neon);
-  animation:titleGlow 2s infinite alternate;
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+  from{ text-shadow:0 0 6px var(--neon); }
+  to{ text-shadow:0 0 18px var(--neon),0 0 30px var(--pink); }
 }
 
-@keyframes titleGlow{
-  from{
-    text-shadow:0 0 8px var(--neon);
-  }
-  to{
-    text-shadow:
-      0 0 15px var(--neon),
-      0 0 30px var(--pink),
-      0 0 45px var(--purple);
-  }
+.list{
+  max-width:600px;
+  margin:auto;
 }
 
-/* ===== CARD ===== */
-.card{
-  width:90%;
-  max-width:620px;
-  margin:35px auto;
-  padding:14px;
-  border-radius:18px;
-  position:relative;
-  overflow:hidden;
-  animation:pulse 3s infinite;
-}
-
-@keyframes pulse{
-  0%{ transform:scale(1); }
-  50%{ transform:scale(1.02); }
-  100%{ transform:scale(1); }
-}
-
-/* neon rotating border */
-.card::before{
-  content:'';
-  position:absolute;
-  inset:-3px;
-  background:conic-gradient(
-    var(--neon),
-    var(--pink),
-    var(--purple),
-    var(--neon)
-  );
-  animation:spin 4s linear infinite;
-}
-
-@keyframes spin{
-  to{ transform:rotate(360deg); }
-}
-
-/* inner glass */
-.card::after{
-  content:'';
-  position:absolute;
-  inset:4px;
-  background:#000;
+.song{
+  margin:18px 10px;
+  padding:16px;
   border-radius:14px;
-  z-index:1;
+  background:#000;
+  position:relative;
+  cursor:pointer;
+  overflow:hidden;
 }
 
-/* iframe */
-iframe{
-  width:100%;
-  height:230px;
-  border:none;
-  border-radius:12px;
+.song::before{
+  content:'';
+  position:absolute;
+  inset:-2px;
+  background:linear-gradient(90deg,var(--neon),var(--pink),var(--neon));
+  animation:move 3s linear infinite;
+}
+@keyframes move{
+  to{ background-position:200% 0; }
+}
+
+.song > div{
   position:relative;
   z-index:2;
+}
+
+.title{
+  font-size:18px;
+  letter-spacing:1px;
+}
+
+.play{
+  margin-top:6px;
+  font-size:14px;
+  color:var(--neon);
+}
+
+iframe{
+  width:100%;
+  height:200px;
+  margin-top:12px;
+  border:none;
+  border-radius:12px;
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
-<h1>RAMZXON • NEON PHONK</h1>
+<h1>RAMZXON • PHONK</h1>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/JX_uCMdpnAE" allowfullscreen></iframe>
+<div class="list">
+
+<div class="song" onclick="playSong(1)">
+  <div>
+    <div class="title">GONGO</div>
+    <div class="play">▶ PLAY</div>
+    <iframe id="p1" src="https://www.youtube.com/embed/JX_uCMdpnAE?enablejsapi=1"></iframe>
+  </div>
 </div>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/qEs52rtvOuA" allowfullscreen></iframe>
+<div class="song" onclick="playSong(2)">
+  <div>
+    <div class="title">TIKI TIKI</div>
+    <div class="play">▶ PLAY</div>
+    <iframe id="p2" src="https://www.youtube.com/embed/qEs52rtvOuA?enablejsapi=1"></iframe>
+  </div>
 </div>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/9jTpJsFB-d4" allowfullscreen></iframe>
+<div class="song" onclick="playSong(3)">
+  <div>
+    <div class="title">ACIDO 3</div>
+    <div class="play">▶ PLAY</div>
+    <iframe id="p3" src="https://www.youtube.com/embed/9jTpJsFB-d4?enablejsapi=1"></iframe>
+  </div>
 </div>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/uJrHoagOjnU" allowfullscreen></iframe>
+<div class="song" onclick="playSong(4)">
+  <div>
+    <div class="title">SLXUGHTER ENVY</div>
+    <div class="play">▶ PLAY</div>
+    <iframe id="p4" src="https://www.youtube.com/embed/uJrHoagOjnU?enablejsapi=1"></iframe>
+  </div>
 </div>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/7ULXYXFsgtM" allowfullscreen></iframe>
+<div class="song" onclick="playSong(5)">
+  <div>
+    <div class="title">MONTAGEM BIÔNICA</div>
+    <div class="play">▶ PLAY</div>
+    <iframe id="p5" src="https://www.youtube.com/embed/7ULXYXFsgtM?enablejsapi=1"></iframe>
+  </div>
 </div>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/tn10M_792_Q" allowfullscreen></iframe>
+<div class="song" onclick="playSong(6)">
+  <div>
+    <div class="title">ACIDO ALT VER</div>
+    <div class="play">▶ PLAY</div>
+    <iframe id="p6" src="https://www.youtube.com/embed/tn10M_792_Q?enablejsapi=1"></iframe>
+  </div>
 </div>
+
+</div>
+
+<script>
+function playSong(n){
+  document.querySelectorAll('iframe').forEach(f=>{
+    f.style.display='none';
+    f.src=f.src; // STOP
+  });
+  document.getElementById('p'+n).style.display='block';
+}
+</script>
 
 </body>
 </html>
