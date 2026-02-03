@@ -2,72 +2,145 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<title>free Phonks</title>
+<title>Ramzxon Neon Phonk</title>
 
 <style>
+:root{
+  --neon:#00fff7;
+  --pink:#ff2fd6;
+}
+
 body{
+  margin:0;
+  min-height:100vh;
   background:#000;
+  font-family:Arial, sans-serif;
   color:#fff;
-  font-family:Arial;
-  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
+
+/* NEON TITLE */
+h1{
+  margin:25px 0;
+  font-size:32px;
+  animation:glow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+  from{ text-shadow:0 0 6px rgba(0,255,247,.4); }
+  to{
+    text-shadow:
+      0 0 12px rgba(0,255,247,.8),
+      0 0 24px rgba(255,47,214,.7);
+  }
+}
+
+/* BUTTONS */
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  width:90%;
+  max-width:700px;
+}
+
 button{
-  margin:8px;
-  padding:10px 18px;
-  background:#111;
-  color:#0ff;
-  border:1px solid #0ff;
+  padding:12px;
+  background:#050505;
+  color:var(--neon);
+  border:1px solid var(--neon);
   cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  font-size:15px;
 }
-iframe{
-  display:none;
-  margin-top:20px;
+
+button::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(0,255,247,.6),transparent);
+  transform:translateX(-100%);
+  animation:sweep 3s linear infinite;
+}
+
+@keyframes sweep{
+  to{ transform:translateX(100%); }
+}
+
+button:hover{
+  box-shadow:0 0 12px var(--neon), 0 0 24px var(--pink);
+}
+
+/* PLAYER */
+.player{
+  margin-top:25px;
   width:90%;
   max-width:560px;
+}
+
+iframe{
+  width:100%;
   height:315px;
   border:none;
+  display:none;
+  box-shadow:0 0 18px var(--neon);
+}
+
+/* FOOTER */
+footer{
+  margin:25px 0;
+  font-size:13px;
+  opacity:.6;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🔥 Ramzxon Phonk Player</h1>
+<h1>⚡ Ramzxon Neon Phonk</h1>
 
-<button onclick="play(1)">Gozalo</button>
-<button onclick="play(2)">Tiki TIKI</button>
-<button onclick="play(3)">Acido 3</button>
-<button onclick="play(4)">Slxughter Envy</button>
-<button onclick="play(5)">Montagem Biónica</button>
-<button onclick="play(6)">ACIDO ALT VER</button>
+<div class="buttons">
+  <button onclick="play(1)">Gozalo</button>
+  <button onclick="play(2)">Tiki TIKI</button>
+  <button onclick="play(3)">Acido 3</button>
+  <button onclick="play(4)">Slxughter Envy</button>
+  <button onclick="play(5)">Montagem Biónica</button>
+  <button onclick="play(6)">ACIDO ALT VER</button>
+</div>
 
-<!-- PLAYERLAR -->
-<iframe id="p1" src=""></iframe>
-<iframe id="p2" src=""></iframe>
-<iframe id="p3" src=""></iframe>
-<iframe id="p4" src=""></iframe>
-<iframe id="p5" src=""></iframe>
-<iframe id="p6" src=""></iframe>
+<div class="player">
+  <iframe id="p1"></iframe>
+  <iframe id="p2"></iframe>
+  <iframe id="p3"></iframe>
+  <iframe id="p4"></iframe>
+  <iframe id="p5"></iframe>
+  <iframe id="p6"></iframe>
+</div>
+
+<footer>© Ramzxon 012</footer>
 
 <script>
 const links = {
-  1: "https://www.youtube.com/embed/JX_uCMdpnAE?autoplay=1",
-  2: "https://www.youtube.com/embed/qEs52rtvOuA",
-  3: "https://www.youtube.com/embed/9jTpJsFB-d4?autoplay=1",
-  4: "https://www.youtube.com/embed/uJrHoagOjnU?autoplay=1",
-  5: "https://www.youtube.com/embed/7ULXYXFsgtM?autoplay=1",
-  6: "https://www.youtube.com/embed/tn10M_792_Q?autoplay=1"
+  1:"https://www.youtube.com/embed/JX_uCMdpnAE?autoplay=1",
+  2:"https://www.youtube.com/embed/qEs52rtvOuA?autoplay=1",
+  3:"https://www.youtube.com/embed/9jTpJsFB-d4?autoplay=1",
+  4:"https://www.youtube.com/embed/uJrHoagOjnU?autoplay=1",
+  5:"https://www.youtube.com/embed/7ULXYXFsgtM?autoplay=1",
+  6:"https://www.youtube.com/embed/tn10M_792_Q?autoplay=1"
 };
 
 function play(n){
   for(let i=1;i<=6;i++){
-    let f = document.getElementById("p"+i);
-    f.style.display = "none";
-    f.src = ""; // STOP
+    const f=document.getElementById("p"+i);
+    f.style.display="none";
+    f.src="";
   }
-  let cur = document.getElementById("p"+n);
-  cur.style.display = "block";
-  cur.src = links[n];
+  const cur=document.getElementById("p"+n);
+  cur.style.display="block";
+  cur.src=links[n];
 }
 </script>
 
