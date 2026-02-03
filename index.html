@@ -2,10 +2,71 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Ramzxon Site</title>
+  <title>Ramzxon Music</title>
+
+  <style>
+    body {
+      background: #0b0b0b;
+      color: white;
+      font-family: Arial;
+      padding: 30px;
+    }
+
+    .card {
+      background: #111;
+      border-radius: 12px;
+      padding: 20px;
+      width: 300px;
+    }
+
+    .play-btn {
+      background: #00ff88;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    iframe {
+      margin-top: 15px;
+      width: 100%;
+      height: 170px;
+      display: none;
+      border-radius: 10px;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>ISHLADI 🔥</h1>
-  <p>Agar buni ko‘ryapsan — GitHub Pages tirik.</p>
+
+  <h1>🎧 Ramzxon Music</h1>
+
+  <!-- 🎵 MUSIQA KARTASI -->
+  <div class="card">
+    <h3>Phonk Track</h3>
+
+    <button class="play-btn" onclick="playMusic()">
+      ▶️ Play
+    </button>
+
+    <!-- 🔴 YOUTUBE EMBED -->
+    <iframe
+      id="player"
+      src="https://www.youtube.com/embed/XFdnTeTJp3E"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <script>
+    function playMusic() {
+      const iframe = document.getElementById("player");
+      iframe.style.display = "block";
+    }
+  </script>
+
 </body>
 </html>
+
