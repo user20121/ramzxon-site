@@ -119,7 +119,16 @@ footer{
   <button onclick="play(5)">Montagem Biónica</button>
   <button onclick="play(6)">ACIDO ALT VER</button>
 </div>
+  <button onclick="openAdmin()" class="admin-btn">🔒 Admin</button>
 
+<div id="adminPanel" style="display:none;">
+  <input type="text" id="songName" placeholder="Qo‘shiq nomi">
+  <input type="text" id="songLink" placeholder="YouTube embed link">
+  <button onclick="addSong()">➕ Qo‘shiq qo‘shish</button>
+</div>
+  <h2>🎧 Phonklar</h2>
+
+<div id="songs"></div>
 <div class="player">
 <iframe id="player" allow="autoplay" allowfullscreen></iframe>
 </div>
@@ -160,6 +169,49 @@ function play(n){
   const cur=document.getElementById("p"+n);
   cur.style.display="block";
   cur.src=links[n];
+}
+</script>
+<script>
+const ADMIN_PASSWORD = "ramzxon"; // 🔴 parolni xohlagancha o‘zgartir
+
+let songs = JSON.parse(localStorage.getItem("songs")) || [];
+
+function openAdmin(){
+  let p = prompt("Admin parol:");
+  if(p === ADMIN_PASSWORD){
+    document.getElementById("adminPanel").style.display = "block";
+  } else {
+    alert("❌ Ruxsat yo‘q");
+  }
+}
+
+function addSong(){
+  let name = document.getElementById("songName").value;
+  let link = document.getElementById("songLink").value;
+
+  if(!name || !link){
+    alert("To‘ldir");
+    return;
+  }
+
+  songs.push({name, link});
+  localStorage.setItem("songs", JSON.stringify(songs));
+  alert("✅ Qo‘shiq qo‘shildi");
+  location.reload();
+}
+</script>
+<script>
+const container = document.getElementById("songs");
+
+songs.forEach((s, i)=>{
+  let btn = document.createElement("button");
+  btn.innerText = s.name;
+  btn.onclick = ()=>playSong(s.link);
+  container.appendChild(btn);
+});
+
+function playSong(link){
+  document.getElementById("player").src = link + "?autoplay=1";
 }
 </script>
 
